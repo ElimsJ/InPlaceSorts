@@ -16,34 +16,28 @@ public class InPlaceSorts
     public static void insertionSort(int[] list1)
     {
 
-        for (int i=1; i<list1.length; ++i)
-        {
-            int key = list1[i];
-            int j = i-1;
-
-            while (j>=0 && list1[j] > key)
-            {
-                list1[j+1] = list1[j];
-                j = j-1;
-            }
-            list1[j+1] = key;
-        }
     }
     public static void selectionSort(double[] list1)
     {
-        for ( int i = 0; i < list1.length; i++)
+        int swap = 0;
+        double min = 0;
+
+        for ( int i =0; i< list1.length; i++)
         {
-            int min = i;
-            for ( int j = i+1; j < list1.length; j++)
+            swap = i;
+            min = list1[i];
+
+            for( int j = i ; j < list1.length ; j++)
             {
-                if( list1[j] <  list1[min])
+                if ( list1[j] < min)
                 {
-                    j = min;
+                    swap = j;
+                    min = list1[j];
                 }
             }
-            double swap = list1[min];
-            list1[min] = list1[i];
-            list1[i] = swap;
+            double x = list1[i];
+            list1[i] = list1 [swap];
+            list1[swap] = x;
         }
     }
     public static void intArr(int amount)
@@ -56,11 +50,28 @@ public class InPlaceSorts
     }
     public static void douArr(int amount)
     {
-        int [] rndDou = new int[amount];
+        double [] rndDou = new double[amount];
         for ( int i = 0; i < amount;i++)
         {
-            rndDou[i] = (int) Math.random()*10;
+            rndDou[i] = Math.random()*10;
         }
     }
-
+    public static String [] randomStringArr(int num, int length)
+    {
+        String [] arr = new String[num];
+        while(num > 0)
+        {
+            int i = 0;
+            String s = "";
+            while (i < length)
+            {
+                char c = (char)((Math.random()*26) +97 );
+                s = s + c ;
+                i++;
+            }
+            num -- ;
+            arr[num] = s ;
+        }
+        return arr;
+    }
 }
